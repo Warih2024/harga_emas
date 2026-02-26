@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Harga Emas Hari Ini</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1>Harga Emas Hari Ini</h1>
+  <p id="price">Memuat data...</p>
 
+  <script>
+    fetch("data.json")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("price").innerText =
+          "Rp " + data.price_idr_per_gram.toLocaleString() +
+          " per gram (" + data.date + ")";
+      })
+      .catch(() => {
+        document.getElementById("price").innerText =
+          "Data belum tersedia.";
+      });
+  </script>
+</body>
+</html>
